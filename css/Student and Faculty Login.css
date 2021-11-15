@@ -1,0 +1,92 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: #800000;
+    margin-top: 3%;
+}
+
+header {
+    background-color: white;
+    border: solid 1px black;
+    display: flex;
+    justify-content: center;
+    color: #C51E3A;
+    font-size: larger;
+}
+
+form {
+    width: 100%;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+h2 {
+    justify-self: center;
+    align-self: center;
+    font-weight: lighter;
+    padding: 10px;
+}
+
+h3 {
+    justify-self: center;
+    align-self: center;
+    font-weight: normal;
+    padding: 5px;
+}
+
+.login {
+    display: grid;
+    width: 100%;
+    border: solid 1px black;
+}
+
+label {
+    font-weight: lighter;
+    font-size: 16px;
+}
+
+.custom {
+    width: 400px;
+    display: grid;
+    margin-bottom: 10px;
+}
+
+.loginbttn {
+    justify-self: center;
+    align-self: center;
+}
+
+.bttn {
+    color: white;
+    border: solid 1px white;
+    background-color: #595959;
+    padding: 10px 40px 10px 40px;
+    border-radius: 5%;
+}
+
+.bttn:hover {
+    background-color: white;
+    border: solid 1px white;
+    color: #595959;
+    padding: 10px 40px 10px 40px;
+    border-radius: 5%;
+}
+
+#InputEmail,
+#InputPassword {
+    border: solid 1px white;
+    padding: 10px 40px 10px 40px;
+    border-radius: 5px;
+    height: 55px;
+}
+
+@media only screen and (max-width:1200px) {
+    .TUPlabel {
+        font-size: 30px;
+        justify-self: center;
+    }
+}
