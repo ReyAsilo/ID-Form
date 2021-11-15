@@ -17,7 +17,6 @@ header {
 }
 
 form {
-    border: solid 1px black;
     width: 100%;
     display: grid;
     align-items: center;
@@ -31,4 +30,47 @@ h2 {
     align-self: center;
     font-weight: lighter;
     padding: 10px;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.container {
+    display: grid;
+    justify-content: center;
+    align-self: center;
+}
+
+.image {
+    justify-self: center;
+    align-self: center;
+    padding-bottom: 10%;
+}
+
+a {
+    justify-self: center;
+    align-self: center;
+    background-color: white;
+    padding: 10px 30px 10px 30px;
+}
+
+a:hover {
+    justify-self: center;
+    align-self: center;
+    background-color: #FBD303;
+    color: #800000;
+    padding: 10px 30px 10px 30px;
+}
+
+.pick {
+    justify-content: center;
+    align-self: center;
+    width: 600px;
+}
+
+.pick h3 {
+    text-align: center;
 }
