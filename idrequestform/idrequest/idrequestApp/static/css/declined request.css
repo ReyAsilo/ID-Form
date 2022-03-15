@@ -1,0 +1,127 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: #800000;
+    margin-top: 3%;
+}
+
+header {
+    background-color: white;
+    border: solid 1px black;
+    display: flex;
+    justify-content: center;
+    color: #C51E3A;
+    font-size: larger;
+    text-shadow: black;
+}
+
+#logo {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    z-index: 10000;
+}
+
+img {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    z-index: 10000;
+}
+
+form {
+    width: 100%;
+    display: grid;
+    color: black;
+    margin-bottom: 20%;
+}
+
+h3 {
+    justify-self: left;
+    align-self: left;
+    color: white;
+    margin-top: 0.5%;
+    font-weight: normal;
+    padding: 5px;
+    padding-left: 120px;
+}
+
+#declined {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+    margin: 25px auto;
+}
+
+#declined td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#declined tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#declined tr:hover {
+    background-color: #ff9393;
+}
+
+#declined tr:nth-child(odd) {
+    background-color: #ddd;
+}
+
+#declined tr:hover {
+    background-color: #ff9393;
+}
+
+
+/* unvisited link */
+
+a:link {
+    color: purple;
+}
+
+
+/* visited link */
+
+a:visited {
+    color: black;
+}
+
+
+/* mouse over link */
+
+a:hover {
+    color: red;
+}
+
+
+/* selected link */
+
+a:active {
+    color: blue;
+}
+
+.btn-group {
+    width: 25%;
+    left: 70%;
+}
+
+.btn-primary {
+    background-color: white;
+}
+
+.btn-primary1 {
+    background-color: gray;
+}
+
+.btn-primary:hover {
+    color: white;
+    background-color: gray;
+}
+
+.btn-primary1:hover {
+    color: white;
+}

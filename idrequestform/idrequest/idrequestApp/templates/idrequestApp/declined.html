@@ -1,3 +1,4 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,49 +10,39 @@
 
     <!--BOOTSTRAOP-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <!--FONTS-->
-    <link rel="stylesheet" href="../css/fonts.css">
+
     <!--Customize CSS-->
-    <link rel="stylesheet" href="../css/Student and Faculty Login.css">
+    <link rel="stylesheet" href="{%static 'css/declined request.css'%}">
+    <link rel="icon" href="{%static 'images/logo.png'%}">
 </head>
 
 <body>
     <main>
+        
         <header>
-            <img src="../images/logo.png" alt="TUPC logo" width="120px" height="120px">
+            <img src="{%static 'images/logo.png'%}" alt="TUPC logo" width="120px" height="120px">
             <h1 class="TUPlabel"> TECHNOLOGICAL UNIVERSITY OF <br> THE PHILIPPINES - CAVITE</h1>
         </header>
 
         <form>
-            <h2>ID REQUEST</h2>
+            <h3>DECLINED REQUEST</h3>
 
-            <h3>User Authentication</h3>
-            <div class="custom">
-                <label> Gsfe Account:</label>
-                <input type="email" id="InputEmail" placeholder="juan.delacruz@gsfe.tupcavite.edu.ph">
-
-                <label> Password:</label>
-                <input type="password" id="InputPassword">
+            <div class="btn-group">
+                <a href="{%static 'APPROVED REQUEST (APPROVED).html'%}" class="btn btn-primary">APPROVED</a>
+                <a href="{%static 'DECLINED REQUEST (DECLINED).html'%}" class="btn btn-primary1">DECLINED</a>
             </div>
 
-            <div class="loginbttn">
-                <button type="submit" class="bttn">LOGIN</button>
-            </div>
-
+            <table id="declined">
+               
+            </table>
         </form>
 
-
-
     </main>
-
-
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
-    <script src="../js/Student and Faculty Login.js"></script>
+    <script src="../js/declined.js"></script>
 </body>
 
 <!-- secsecsec -->

@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap');
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: #800000;
+    margin-top: 3%;
+}
+
+header {
+    align-items: center;
+    background-color: white;
+    border: solid 1px black;
+    display: flex;
+    justify-content: center;
+    color: #C51E3A;
+    font-size: larger;
+    /* padding-left: 100px; */
+}
+
+img {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    z-index: 10000;
+}
+
+form {
+    width: 100%;
+    display: grid;
+    color: black;
+    margin-bottom: 20%;
+}
+
+h3 {
+    justify-self: center;
+    align-self: center;
+    color: white;
+    margin-top: 0.5%;
+    font-weight: normal;
+    padding: 5px;
+}
+
+#stuculty {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+    margin: 25px auto;
+}
+
+#stuculty td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#stuculty tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#stuculty tr:hover {
+    background-color: #ff9393;
+}
+
+#stuculty tr:nth-child(odd) {
+    background-color: #ddd;
+}
+
+#stuculty tr:hover {
+    background-color: #ff9393;
+}
+
+
+/* unvisited link */
+
+a:link {
+    color: purple;
+}
+
+
+/* visited link */
+
+a:visited {
+    color: black;
+}
+
+
+/* mouse over link */
+
+a:hover {
+    color: red;
+}
+
+
+/* selected link */
+
+a:active {
+    color: blue;
+}
+
+.loginbttn {
+    justify-self: center;
+    align-self: center;
+}
+
+.btn-primary:hover {
+    background-color: white;
+    border: solid 1px white;
+    color: #595959;
+    padding: 10px 40px 10px 40px;
+    border-radius: 5%;
+}
+
+.btn-primary1 {
+    color: white;
+    border: solid 1px white;
+    background-color: #595959;
+    padding: 10px 40px 10px 40px;
+    border-radius: 5%;
+}
+
+.btn-primary1:hover {
+    background-color: white;
+    border: solid 1px white;
+    color: #595959;
+    padding: 10px 40px 10px 40px;
+    border-radius: 5%;
+}
