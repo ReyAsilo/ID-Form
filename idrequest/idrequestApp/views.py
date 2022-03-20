@@ -87,6 +87,9 @@ def sinfo (request):
 def finfo (request):
     return render(request,'idrequestApp/finfo.html')
 
+def newreg(request):
+    return render(request,'idrequestApp/registration.html')
+
     
 
 

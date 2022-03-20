@@ -1,0 +1,33 @@
+body {
+    background-color: #800000;
+    margin-top: 3%;
+}
+
+header {
+    background-color: white;
+    border: solid 1px black;
+    display: flex;
+    justify-content: center;
+    color: #C51E3A;
+    font-size: larger;
+    text-shadow: black;
+}
+
+#logo {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    z-index: 10000;
+}
+
+section {
+    margin-top: 50px;
+}
+
+#checkbox {
+    justify-content: left;
+}
+
+
+
+

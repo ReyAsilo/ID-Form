@@ -127,3 +127,12 @@ input.login {
 .login:focus {
     background: #434de2;
 }
+
+p {
+    font-size: large;
+}
+
+#reg {
+    font-size: large;
+    padding-left: 70px;
+}
