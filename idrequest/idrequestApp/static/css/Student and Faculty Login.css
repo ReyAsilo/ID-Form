@@ -5,12 +5,12 @@ body {
 
 header {
     background-color: white;
-    border: solid 1px black;
     display: flex;
     justify-content: center;
     color: #C51E3A;
     font-size: larger;
     text-shadow: black;
+    margin-bottom: 5px;
 }
 
 #logo {

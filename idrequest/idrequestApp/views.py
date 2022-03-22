@@ -10,7 +10,7 @@ from .models import facultytable
 def index (request):
     return render(request,'idrequestApp/index.html')
 def pick (request):
-    return render(request,'idrequestApp/pick.html')
+    return render(request,'idrequestApp/firstview.html')
 def forms (request):
     if request.method == 'POST':
         name=request.POST.get('firstname')

@@ -1,0 +1,9 @@
+/* Show it is fixed to the top */
+body {
+  min-height: 75rem;
+  padding-top: 6rem;
+  background-color:#800000;;
+}
+h1 {font-weight: lighter;}
+h2 {font-weight: lighter;}
+h3 {color: #C51E3A;

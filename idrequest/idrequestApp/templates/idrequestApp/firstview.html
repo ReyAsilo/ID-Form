@@ -1,0 +1,93 @@
+{%load static%}
+<!doctype html>
+<html lang="en">
+  <head>
+  
+    <!-- Bootstrap core CSS -->
+<link href="{%static 'css/bootstrap.min.css'%}" rel="stylesheet">
+<link rel="icon" href="{%static 'images/logo.png'%}">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    <!-- Custom styles for this template -->
+    <link href="{%static 'css/navbar-top-fixed.css'%}" rel="stylesheet">
+  </head>
+  <body>
+    
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-light ">
+  <img src="{%static 'images/logo.png'%}" alt="TUPC logo" width="50px" height="50px">
+ 
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+
+    <h3 class="TUPlabel"> TECHNOLOGICAL UNIVERSITY OF THE PHILIPPINES - CAVITE</h3>
+  </div>
+  
+  <div>
+
+    <form class="form-inline my-2 my-lg-0" action="{% url 'idrequestApp:index' %}" method = "POST">
+      {% csrf_token %}
+      <button class="btn btn-outline-success my-2 my-sm-0" onclick="logout()" type="submit">Logout</button>
+    </form>
+  </div>
+</nav>
+
+
+<main role="main" class="container mt-6">
+  <div class="jumbotron mt-6">
+    <h1> Welcome to TUPC I.D. Registration! </h1>
+    <h2> Kindly choose your role. </h2>
+  </div>
+
+  <div class="text-center">
+    <a href="{% url 'idrequestApp:forms' %}" class="btn btn-info mr-5 mt-5" role="button">Student</a>
+  <img src="{%static 'images/Studentlogo.png'%}" class="rounded" alt="...">
+  <img src="{%static 'images/Professorlogo.png'%}" class="rounded" alt="...">
+  
+  <a href="{% url 'idrequestApp:fform' %}" class="btn btn-info ml-5 mt-5" role="button">Professor</a>
+</div>
+
+  <div class="text-center">
+  
+  
+  
+</div>
+
+
+</main>
+
+
+
+
+<script type="text/javascript" language="javascript">
+  function logout() {
+      var Ans = confirm("Are you sure you want to logout?");
+      if(Ans==true)
+          return true;
+      else
+          return false;
+  };
+  
+</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+      
+  </body>
+</html>
