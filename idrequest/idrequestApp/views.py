@@ -1,9 +1,13 @@
+from pyexpat.errors import messages
 from django.http.response import FileResponse
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from idrequestApp.forms import sform,fform
+from idrequestApp.forms import sform,fform , regforms
 from .models import studenttable
 from .models import facultytable
+from .models import registration
+from django.contrib import messages
+
 
 
 # Create your views here.
@@ -11,6 +15,7 @@ def index (request):
     return render(request,'idrequestApp/index.html')
 def pick (request):
     return render(request,'idrequestApp/firstview.html')
+
 def forms (request):
     if request.method == 'POST':
         name=request.POST.get('firstname')
@@ -37,7 +42,7 @@ def cstud (request):
     check = studenttable.objects.last()
     return render(request,'idrequestApp/cstud.html', {'check':check})
 
-def fform (request):
+def facform (request):
     if request.method == 'POST':
         fname=request.POST.get('fname')
         fmiddlename=request.POST.get('fmiddlename')
@@ -88,9 +93,21 @@ def sinfo (request):
 def finfo (request):
     return render(request,'idrequestApp/finfo.html')
 
-def newreg(request):
+def newreg (request):
     return render(request,'idrequestApp/registration.html')
 
+def newreg (request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        type = request.POST.get('type')
+    try:
+        datar = registration.objects.create(name=name, email=email, password=password, type=type)
+        datar.save()
+        messages.success(request, 'Succesfully Registered!')
+        return redirect ('/')
+    except:
+        print("mali")
+        return render(request,'idrequestApp/registration.html')
     
-
-

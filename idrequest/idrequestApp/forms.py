@@ -10,6 +10,10 @@ class fform(forms.ModelForm):
     class Meta:
 
         fields = ('fname', 'fmiddlename', 'flastname', 'fnumber', 'date', 'gisis', 'gpn', 'philhealth', 'tin', 'pagibig', 'others', 'fcperson', 'fcnumber', 'faddress', 'idpic', 'signature' )
+
+class regforms(forms.ModelForm):
+    class Meta:
         
+        fields = ('name', 'email', 'password', 'type')
 
        

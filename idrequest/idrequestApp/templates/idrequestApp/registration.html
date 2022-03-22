@@ -37,48 +37,44 @@
                   <div class="card-body p-4">
                     <h2 class="text-uppercase text-center mb-3">Create an account</h2>
       
-                    <form>
+                    <form method='POST' enctype="multipart/for-data" action="{% url 'idrequestApp:newreg' %}">
+                      {% csrf_token %}
       
                       <div class="form-outline mb-2">
-                        <input type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Given Name   Middle Name   Surname"/>
+                        <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="name" placeholder="Given Name   Middle Name   Surname" required>
                         <label class="form-label" for="form3Example1cg"></label>
                       </div>
       
                       <div class="form-outline mb-2">
-                        <input type="email" id="form3Example3cg" class="form-control form-control-lg" placeholder="Your Email" />
+                        <input type="email" id="form3Example3cg" class="form-control form-control-lg"name="email" placeholder="Your Email" required>
                         <label class="form-label" for="form3Example3cg"></label>
                       </div>
 
         
                       <div class="form-outline mb-4">
-                        <input type="password" id="p" class="form-control form-control-lg" placeholder="Password"/>
+                        <input type="password" id="p" class="form-control form-control-lg" name="password" placeholder="Password"required/>
                   
                       </div>
 
-                      <div class="form-outline mb-2">
-                        <input type="password" id="p1" class="form-control form-control-lg" placeholder="Confirm your password" />
-                      
+                      <div class="form-outline mb-4">
+                        <input type="password" id="p1" class="form-control form-control-lg"name ="type" placeholder="Confirm your password" required>
                       </div>
 
                    
                     <div class = "d-flex justify-content-center">
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                        <label class="form-check-label" for="inlineRadio1">Student</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                        <label class="form-check-label" for="inlineRadio2">Professor</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                        <label class="form-check-label" for="inlineRadio3">Admin</label>
-                      </div>
-
+                     
+                      
+                        <select id="inputsection" class="form-control" name="type">
+                      <option selected disabled>User's Role</option>
+                      <option>Student</option>
+                      <option>Professor</option>
+                      <option>Admin</option>
+                      
+                    </select>
                     </div>
       
                       <div id="reg" class=" justify-content-center mt-4" >
-                        <button type="button" class="btn btn-primary btn-block btn-lg"   onclick="return Validate()"  >Register   </button>
+                        <button role="button" type="submit" class="btn btn-primary btn-block btn-lg"   onclick="return Validate()"  >Register   </button>
                       </div>
       
                       <p class="text-center text-muted mt-2 mb-0">Have already an account? <a href="{% url 'idrequestApp:index' %}" class="fw-bold text-body"><u>Login here</u></a></p>
@@ -101,6 +97,7 @@
                 alert("Passwords do not match.");
                 return false;
             }
+            alert("Succesfully Registered!")
             return true;
         }
       </script>
