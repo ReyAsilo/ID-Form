@@ -5,6 +5,12 @@ import os
 
 # Create your models here.
 
+class registration(models.Model):
+    name = models.CharField(max_length=200, blank=True, null=True)
+    email = models.EmailField(max_length = 200)
+    password = models.CharField(max_length=200, blank=True, null=True)
+    type = models.CharField(max_length=200, blank=True, null=True)
+
 class studenttable(models.Model):
     CHOICES = [('COET', 'Computer Engineering Technology'),('BSIE', 'BS Industrial Education')
     ]
@@ -20,8 +26,6 @@ class studenttable(models.Model):
     idpic = models.ImageField(blank=True, null=True, upload_to="img/%y")
     signature = models.ImageField(blank=True, null=True, upload_to="img/&y ")
     status = models.CharField(max_length=200, blank=True, null=True)
-
-
 
 
 class facultytable(models.Model):

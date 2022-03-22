@@ -32,10 +32,11 @@ def forms (request):
     except:
         print("error")
         return render(request, 'idrequestApp/sform.html')
-    return render(request, 'idrequestApp/sform.html')
+    
 def cstud (request):
     check = studenttable.objects.last()
     return render(request,'idrequestApp/cstud.html', {'check':check})
+
 def fform (request):
     if request.method == 'POST':
         fname=request.POST.get('fname')
