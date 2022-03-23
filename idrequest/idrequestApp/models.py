@@ -39,7 +39,6 @@ class facultytable(models.Model):
     philhealth = models.IntegerField ( blank=True, null=True)
     tin = models.IntegerField ( blank=True, null=True)
     pagibig =models.IntegerField (blank=True, null=True)
-    others = models.CharField(max_length=200, blank=True, null=True)
     fcperson = models.CharField(max_length=200, blank=True, null=True)
     fcnumber = models.IntegerField ( blank=True, null=True)
     faddress = models.CharField(max_length=200, blank=True, null=True)

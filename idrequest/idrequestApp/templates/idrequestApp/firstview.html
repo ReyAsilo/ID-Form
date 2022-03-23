@@ -42,7 +42,7 @@
 
     <form class="form-inline my-2 my-lg-0" action="{% url 'idrequestApp:index' %}" method = "POST">
       {% csrf_token %}
-      <button class="btn btn-outline-success my-2 my-sm-0" onclick="logout()" type="submit">Logout</button>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
     </form>
   </div>
 </nav>
@@ -75,6 +75,7 @@
 
 
 <script type="text/javascript" language="javascript">
+
   function logout() {
       var Ans = confirm("Are you sure you want to logout?");
       if(Ans==true)

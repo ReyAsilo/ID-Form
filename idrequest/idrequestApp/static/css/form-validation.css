@@ -1,0 +1,35 @@
+.container {
+  max-width: 960px;
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: #800000;
+  margin-top: 3%;
+}
+
+h3 {
+
+  color: #800000;
+
+}
+h4 {
+
+  color: white;
+
+}
+
+h2 {
+
+  color: white;
+
+}
+
+
+
+form {
+
+  color: white;

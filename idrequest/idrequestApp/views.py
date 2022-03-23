@@ -7,7 +7,7 @@ from .models import studenttable
 from .models import facultytable
 from .models import registration
 from django.contrib import messages
-
+import mysql.connector as sql
 
 
 # Create your views here.
@@ -36,13 +36,13 @@ def forms (request):
         return redirect('/cstud')
     except:
         print("error")
-        return render(request, 'idrequestApp/sform.html')
+        return render(request, 'idrequestApp/studentform.html')
     
 def cstud (request):
     check = studenttable.objects.last()
     return render(request,'idrequestApp/cstud.html', {'check':check})
 
-def facform (request):
+def fforms (request):
     if request.method == 'POST':
         fname=request.POST.get('fname')
         fmiddlename=request.POST.get('fmiddlename')
@@ -54,7 +54,6 @@ def facform (request):
         philhealth=request.POST.get('philhealth')
         tin=request.POST.get('tin')
         pagibig=request.POST.get('pagibig')
-        others=request.POST.get('others')
         fcperson=request.POST.get('fcperson')
         fcnumber=request.POST.get('fcnumber')
         faddress=request.POST.get('address')
@@ -62,12 +61,12 @@ def facform (request):
         signature=request.POST.get('signature')
         
     try:
-        datas = facultytable.objects.create(fname=fname, fmiddlename=fmiddlename, flastname=flastname, fnum=fnum, gsis=gsis, gpn=gpn, philhealth=philhealth, tin=tin, pagibig=pagibig, others=others, fcperson=fcperson, fcnumber=fcnumber, faddress=faddress, idpic=idpic, signature=signature, date=date, status = 'pending')
+        datas = facultytable.objects.create(fname=fname, fmiddlename=fmiddlename, flastname=flastname, fnum=fnum, gsis=gsis, gpn=gpn, philhealth=philhealth, tin=tin, pagibig=pagibig, fcperson=fcperson, fcnumber=fcnumber, faddress=faddress, idpic=idpic, signature=signature, date=date, status = 'pending')
         datas.save()
         return redirect('/cfac')
     except:
         print("error")
-    return render(request,'idrequestApp/fform.html')
+    return render(request,'idrequestApp/facultyform.html')
 def cfac (request):
     return render(request,'idrequestApp/cfac.html')
 def pending (request):
@@ -110,4 +109,6 @@ def newreg (request):
     except:
         print("mali")
         return render(request,'idrequestApp/registration.html')
+    
+
     
