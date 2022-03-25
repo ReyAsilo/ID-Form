@@ -23,21 +23,22 @@
         </header>
 
         <form name="login_form" action="{% url 'idrequestApp:pick' %}"  method="POST">
+           
             {% csrf_token %}
             <h2>ID REQUEST</h2>
 
             <h3>User Authentication</h3>
             <div class="custom">
                 <label> Gsfe Account:</label>
-                <input type="email" id="InputEmail" aria-describedby="emailHelp" placeholder="juan.delacruz@gsfe.tupcavite.edu.ph" required>
+                <input type="email" id="InputEmail" class="email" aria-describedby="emailHelp" placeholder="juan.delacruz@gsfe.tupcavite.edu.ph" required>
 
                 <label> Password:</label>
-                <input type="password" id="InputPassword" required>
+                <input type="password" class="pass" id="InputPassword" required>
             </div>
 
             
 
-            <input id="log" class="login" type="submit" value="Log in">
+            <input id="log" class="login" type="submit"  value="Log in">
 
             <p id= "reg" class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="{% url 'idrequestApp:newreg' %}"
                 class="link-danger">Register here</a></p>
@@ -45,6 +46,19 @@
         </form>
 
     </main>
+
+    <script>
+        document.querySelector('.login').onclick = function() {
+
+            var password = document.querySelector('.email').value,
+                password2 = document.querySelector('.pass').value;
+
+            if (password == "") {
+                alert("Field cannot be empty");
+            } 
+            return true
+        }
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

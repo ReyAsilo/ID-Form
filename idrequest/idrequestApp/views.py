@@ -59,7 +59,7 @@ def fforms (request):
         faddress=request.POST.get('address')
         idpic=request.POST.get('idpic')
         signature=request.POST.get('signature')
-        
+      
     try:
         datas = facultytable.objects.create(fname=fname, fmiddlename=fmiddlename, flastname=flastname, fnum=fnum, gsis=gsis, gpn=gpn, philhealth=philhealth, tin=tin, pagibig=pagibig, fcperson=fcperson, fcnumber=fcnumber, faddress=faddress, idpic=idpic, signature=signature, date=date, status = 'pending')
         datas.save()

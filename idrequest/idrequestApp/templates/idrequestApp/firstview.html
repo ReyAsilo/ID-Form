@@ -42,19 +42,19 @@
 
     <form class="form-inline my-2 my-lg-0" action="{% url 'idrequestApp:index' %}" method = "POST">
       {% csrf_token %}
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+      <button class="btn btn-outline-success my-2 my-sm-0" onclick="logout()" type="submit">Logout</button>
     </form>
   </div>
 </nav>
 
 
-<main role="main" class="container mt-6">
-  <div class="jumbotron mt-6">
-    <h1> Welcome to TUPC I.D. Registration! </h1>
+<main  role="main" class="container mt-3">
+  <div style ="background-color: white; border-radius: 5px" class="jumbotron mt-3 p-5 ">
+    <h1 > Welcome to TUPC I.D. Registration! </h1>
     <h2> Kindly choose your role. </h2>
   </div>
 
-  <div class="text-center">
+  <div class="mt-5 text-center">
     <a href="{% url 'idrequestApp:forms' %}" class="btn btn-info mr-5 mt-5" role="button">Student</a>
   <img src="{%static 'images/Studentlogo.png'%}" class="rounded" alt="...">
   <img src="{%static 'images/Professorlogo.png'%}" class="rounded" alt="...">
@@ -75,7 +75,6 @@
 
 
 <script type="text/javascript" language="javascript">
-
   function logout() {
       var Ans = confirm("Are you sure you want to logout?");
       if(Ans==true)
