@@ -109,8 +109,8 @@
 
             <div class="text-center">
                 
-                <a type="button"  href = "{% url 'idrequestApp:appstudent' check.id %}"class="btn btn-primary" >Approve</a>
-                <a type="button" href = "{% url 'idrequestApp:sdelete' check.id %}" class="btn btn-danger" >Decline</a>
+                <a type="button"  href = "{% url 'idrequestApp:appstudent' check.user_id_id %}"class="btn btn-primary" >Approve</a>
+                <a type="button" href = "{% url 'idrequestApp:sdelete' check.user_id_id %}" class="btn btn-danger" >Decline</a>
               
             </div>
         </main>

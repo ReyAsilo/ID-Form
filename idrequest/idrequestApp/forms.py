@@ -1,3 +1,4 @@
+import email
 from django.db.models import fields
 from django.forms import ModelForm
 from django import forms
@@ -32,7 +33,7 @@ class sform(forms.ModelForm):
     class Meta:  
         model = studenttable
       
-        fields = ['name', 'middlename', 'lastname', 'course', 'snumber', 'cperson', 'cnumber', 'address', 'idpic', 'signature' ]
+        fields = ['name', 'middlename', 'lastname', 'course', 'snumber', 'cperson', 'cnumber', 'address', 'idpic', 'signature', 'email']
 
 class fform(forms.ModelForm):
     class Meta:

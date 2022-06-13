@@ -11,6 +11,8 @@ import mysql.connector as sql
 from .forms import UserRegistration
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
+from django.conf import settings
 
 # Create your views here.
 def index (request):
@@ -48,22 +50,25 @@ def pick (request):
 @login_required(login_url='/index')
 def forms (request):
     if request.user.is_authenticated and request.user.userType == 'S':
+        
         if request.method == 'POST':      
-            photo = studenttable()
-            photo.name=request.POST.get('name')
-            photo.middlename=request.POST.get('middlename')
-            photo.lastname=request.POST.get('lastname')
-            photo.course=request.POST.get('section')
-            photo.snumber=request.POST.get('idnum')
-            photo.cperson=request.POST.get('cname')
-            photo.cnumber=request.POST.get('cnumber')
-            photo.address=request.POST.get('address')
-            photo.status = 'pending'
-            if len(request.FILES) != 0:
-                photo.idpic = request.FILES['pic']
-                photo.signature = request.FILES['signature']
-            photo.save()
             
+            student = studenttable.objects.get(user_id_id = request.user.pk)
+          
+            student.name=request.POST.get('name')
+            student.middlename=request.POST.get('middlename')
+            student.lastname=request.POST.get('lastname')
+            student.course=request.POST.get('section')
+            student.snumber=request.POST.get('idnum')
+            student.cperson=request.POST.get('cname')
+            student.cnumber=request.POST.get('cnumber')
+            student.address=request.POST.get('address')
+            student.email = request.POST.get('email')
+            student.status = 'pending'
+            if len(request.FILES) != 0:
+                student.idpic = request.FILES['pic']
+                student.signature = request.FILES['signature']
+            student.save()
             return redirect('/checkstudent')
         else:
             print("error")
@@ -140,15 +145,27 @@ def newreg (request):
     if request.method == 'POST':
         form = UserRegistration(request.POST)
         if form.is_valid():
+            username1 = form.cleaned_data.get('username')
+            user = form.cleaned_data.get('userType')
+            
+        
+            
             form.save()
-            return redirect ('/index')
+            
+            if user == 'S':
+                new = registration.objects.get(username = username1)
+                studenttable.objects.create(user_id = new)
+                
+        return redirect ('/index')
+            
+            
     context =  {'form': form }
     return render(request, 'idrequestApp/registration.html', context)
     
 
 @login_required(login_url='/index')
 def checkstudent (request):
-    if request.user.is_authenticated and request.user.userType == 'A':
+    if request.user.is_authenticated and request.user.userType == 'S':
         check = studenttable.objects.last()
         return render(request,'idrequestApp/check-student.html', {'check':check})
     return redirect('/index')
@@ -170,13 +187,24 @@ def deletestudent (request):
 @login_required(login_url='/index')
 def viewstudent (request, id):
     if request.user.is_authenticated and request.user.userType == 'A':
-        check = studenttable.objects.get(id=id)
+        check = studenttable.objects.get(user_id_id=id)
         return render(request,'idrequestApp/view-student.html', {'check':check})
     return redirect('/index')
 
 def sdelete (request, id):
     if request.user.is_authenticated and request.user.userType == 'A':
-        check = studenttable.objects.get(id=id)
+        
+      
+        check = studenttable.objects.get(user_id_id=id)
+        
+        send_mail(
+    'TUP-CAVITE ID Request: DECLINED',
+    'Your request has been declined. Please fill up the form again.',
+    'idrequestapp@gmail.com',
+    [check.email],
+    fail_silently=False,
+)
+        # send_mail(subject = subject, message =message, auth_user = settings.EMAIL_HOST_USER, recipient_list=[email], fail_silently = false )
         check.delete()
         return redirect('/studentpending')
     return redirect('/index')
@@ -184,7 +212,14 @@ def sdelete (request, id):
 @login_required(login_url='/index')
 def appstudent (request, id):
     if request.user.is_authenticated and request.user.userType == 'A':
-        check = studenttable.objects.get(id=id)
+        check = studenttable.objects.get(user_id_id=id)
+        send_mail(
+            'TUP-CAVITE ID Request: APPROVED',
+            'Your request has been approved. Please wait for the schedule of picking up your ID.',
+            'idrequestapp@gmail.com',
+            [check.email],
+            fail_silently=False,)
+         
         check.status = "approved"
         check.save()
         return redirect('/studentpending')
@@ -200,7 +235,7 @@ def student (request, id):
 @login_required(login_url='/index')
 def printstudent (request, id):
     if request.user.is_authenticated and request.user.userType == 'A':
-        check = studenttable.objects.get(id=id)
+        check = studenttable.objects.get(user_id_id=id)
         return render(request,'idrequestApp/print-student.html', {'check':check})
     return redirect('/index')
 

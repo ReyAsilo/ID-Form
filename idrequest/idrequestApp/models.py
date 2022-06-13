@@ -27,12 +27,15 @@ def filepath(request, filename):
     return os.path.join('uploads/', filename)
     
     
-    
+
     
    
 class studenttable(models.Model):
     CHOICES = [('COET', 'Computer Engineering Technology'),('BSIE', 'BS Industrial Education')
     ]
+    user_id = models.OneToOneField(registration,
+                                   on_delete=models.CASCADE,
+                                   primary_key=True)
     name = models.CharField(max_length=200, blank=True, null=True)
     middlename = models.CharField(max_length=200, blank=True, null=True)
     lastname = models.CharField(max_length=200, blank=True, null=True)
@@ -44,6 +47,7 @@ class studenttable(models.Model):
     idpic = models.ImageField(blank=True, null=True, upload_to=filepath)
     signature = models.ImageField(blank=True, null=True, upload_to=filepath)
     status = models.CharField(max_length=200, blank=True, null=True)
+    email = models.EmailField(max_length=200, blank=True, null=True)
 
 
 class facultytable(models.Model):

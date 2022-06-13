@@ -134,3 +134,11 @@ STATICFILES_DIRS = [(os.path.join(BASE_DIR,'static'))]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'idrequestApp.registration'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'idrequestapp@gmail.com'
+EMAIL_HOST_PASSWORD = 'xodieitnnljeiqcp'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587

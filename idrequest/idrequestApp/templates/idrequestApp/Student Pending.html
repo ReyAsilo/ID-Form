@@ -107,7 +107,7 @@
                             <td>{{k.name}} {{k.middlename}} {{k.lastname}}</td>
                             <td>{{k.snumber}}</td>
                             <td>{{k.course}}</td>
-                            <td><a class="btn btn-primary btn-sm" href = "{% url 'idrequestApp:viewstudent' k.id %}" type="button">View Details</a></td>
+                            <td><a class="btn btn-primary btn-sm" href = "{% url 'idrequestApp:viewstudent' k.user_id_id %}" type="button">View Details</a></td>
                         </tr>
                         {% endfor %}
 
