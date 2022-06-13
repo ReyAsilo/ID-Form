@@ -40,49 +40,56 @@
                     <form method='POST' enctype="multipart/for-data" action="{% url 'idrequestApp:newreg' %}">
                       {% csrf_token %}
       
-                      <div class="form-outline mb-2">
-                        <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="name" placeholder="Given Name   Middle Name   Surname" required>
-                        <label class="form-label" for="form3Example1cg"></label>
-                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <label class="form-label" for="form3Example1cg">First Name:</label>
+                          <div>{{form.first_name}}</div>
+                          
+                        </div>
+
+                        <div class="col">
+                          <label class="form-label" for="form3Example1cg">Last Name:</label>
+                          <div> {{form.last_name}}</div>
+                        
+                         </div>
+                     </div>
       
                       <div class="form-outline mb-2">
-                        <input type="email" id="form3Example3cg" class="form-control form-control-lg"name="email" placeholder="Your Email" required>
-                        <label class="form-label" for="form3Example3cg"></label>
+                        <label class="form-label" for="form3Example3cg">Email:</label>
+                        <div>{{form.email}}</div>
+                        
+                      </div>
+
+                      <div class="form-outline mb-2">
+                        <label class="form-label" for="form3Example3cg">Username:</label>
+                        <div>{{form.username}}</div>
+                        
                       </div>
 
         
-                      <div class="form-outline mb-4">
-                        <input type="password" id="p" class="form-control form-control-lg" name="password" placeholder="Password"required/>
-                  
+                      <div>
+                        <label class="form-label" for="form3Example3cg">Password:</label> 
+                        <div class = "form-control"> {{form.password1}}</div>
                       </div>
 
-                      <div class="form-outline mb-4">
-                        <input type="password" id="p1" class="form-control form-control-lg"name ="type" placeholder="Confirm your password" required>
+                      <div>
+                        <label class="form-label" for="form3Example3cg">Confirm Password:</label>
+                        <div class = "form-control">{{form.password2}} </div>
                       </div>
 
                    
-                    <div class = "d-flex justify-content-center">
-                     
-                      
-                        <select id="inputsection" class="form-control" name="type">
-                      <option selected disabled>User's Role</option>
-                      <option>Student</option>
-                      <option>Professor</option>
-                      <option>Admin</option>
-                      
+                    <div class = "form-outline mb-4">
+                      <label class="form-label" for="form3Example3cg">User Role:</label>
+                      <div> {{form.userType}} </div>
                     </select>
-
-      
-
                     </div>
 
-                    
       
                       <div id="reg" class=" justify-content-center mt-4" >
                         <button role="button" type="submit" class="btn btn-primary btn-block btn-lg"   onclick="return Validate()"  >Register   </button>
                       </div>
       
-                      <p class="text-center text-muted mt-2 mb-0">Have already an account? <a href="{% url 'idrequestApp:index' %}" class="fw-bold text-body"><u>Login here</u></a></p>
+                      <p class="text-center text-muted mt-2 mb-0"> Already have an account? <a href="{% url 'idrequestApp:index' %}" class="fw-bold text-body"><u>Login here</u></a></p>
       
                     </form>
       
@@ -94,17 +101,7 @@
         </div>
       </section>
 
-      <script type="text/javascript">
-        function Validate() {
-            var password = document.getElementById("p").value;
-            var confirmPassword = document.getElementById("p1").value;
-            if (password != confirmPassword) {
-                alert("Passwords do not match.");
-                return false;
-            }
-            return true;
-        }
-      </script>
+      
 
 
 </body>

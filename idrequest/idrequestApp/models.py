@@ -1,16 +1,35 @@
 from django.db import models
 import datetime
 import os
-
+from email.policy import default
+import os
+from django.contrib.auth.models import AbstractUser
+import datetime
 
 # Create your models here.
 
-class registration(models.Model):
-    name = models.CharField(max_length=200, blank=True, null=True)
-    email = models.EmailField(max_length = 200)
-    password = models.CharField(max_length=200, blank=True, null=True)
-    type = models.CharField(max_length=200, blank=True, null=True)
+class registration(AbstractUser):
+    
+    
+    userType = [
+        ('S', 'Student'),
+        ('F', 'Faculty'),
+        ('A', 'Admin'),
+        
+        ]
+    userType = models.CharField(max_length=30, choices= userType, verbose_name='userType', default ='S')
+    
 
+def filepath(request, filename):
+    old_filename = filename
+    timeNow = datetime.datetime.now() .strftime('%Y%m%d%H:%M:%S')
+    filename = "%s%s" % (timeNow, old_filename)
+    return os.path.join('uploads/', filename)
+    
+    
+    
+    
+   
 class studenttable(models.Model):
     CHOICES = [('COET', 'Computer Engineering Technology'),('BSIE', 'BS Industrial Education')
     ]
@@ -19,12 +38,11 @@ class studenttable(models.Model):
     lastname = models.CharField(max_length=200, blank=True, null=True)
     course =  models.CharField(max_length=200, choices=CHOICES)
     snumber = models.CharField(max_length=200, blank=True, null=True)
-    date = models.CharField(max_length=200, blank=True, null=True) 
     cperson = models.CharField(max_length=200, blank=True, null=True)
     cnumber = models.IntegerField ( blank=True, null=True)
     address = models.CharField(max_length=200, blank=True, null=True)
-    idpic = models.ImageField(blank=True, null=True, upload_to="img/%y")
-    signature = models.ImageField(blank=True, null=True, upload_to="img/&y ")
+    idpic = models.ImageField(blank=True, null=True, upload_to=filepath)
+    signature = models.ImageField(blank=True, null=True, upload_to=filepath)
     status = models.CharField(max_length=200, blank=True, null=True)
 
 

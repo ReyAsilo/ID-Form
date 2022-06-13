@@ -40,7 +40,7 @@
   
   <div>
 
-    <form class="form-inline my-2 my-lg-0" action="{% url 'idrequestApp:index' %}" method = "POST">
+    <form class="form-inline my-2 my-lg-0" action="{% url 'idrequestApp:logout' %}">
       {% csrf_token %}
       <button class="btn btn-outline-success my-2 my-sm-0" onclick="logout()" type="submit">Logout</button>
     </form>

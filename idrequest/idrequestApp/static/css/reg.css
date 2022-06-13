@@ -41,3 +41,21 @@ h3 {color: #C51E3A;
     top: 10px;
     z-index: 10000;
 }
+
+.form-control { 
+    width: 100%;
+    padding: 0 0 0 0;
+    
+
+}
+
+.form-control input{ 
+    background-color: #ffffff;
+    height: 36px;
+    border: 1px solid #ced4da00;
+    font-weight: 300;
+    font-size: 18px;
+    border-radius: 3px;
+    width: 100%;
+    
+}
