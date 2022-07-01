@@ -12,7 +12,7 @@ from .forms import UserRegistration
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
-from django.conf import settings
+
 
 # Create your views here.
 def index (request):
@@ -194,18 +194,20 @@ def viewstudent (request, id):
 def sdelete (request, id):
     if request.user.is_authenticated and request.user.userType == 'A':
         
-      
         check = studenttable.objects.get(user_id_id=id)
         
         send_mail(
     'TUP-CAVITE ID Request: DECLINED',
     'Your request has been declined. Please fill up the form again.',
-    'idrequestapp@gmail.com',
+    'TUPC-ID Request',
     [check.email],
     fail_silently=False,
 )
         # send_mail(subject = subject, message =message, auth_user = settings.EMAIL_HOST_USER, recipient_list=[email], fail_silently = false )
-        check.delete()
+          
+        check.status = "declined"
+        check.save()
+    
         return redirect('/studentpending')
     return redirect('/index')
 
@@ -238,6 +240,16 @@ def printstudent (request, id):
         check = studenttable.objects.get(user_id_id=id)
         return render(request,'idrequestApp/print-student.html', {'check':check})
     return redirect('/index')
+
+
+@login_required(login_url='/index')
+def pdf (request, id):
+    if request.user.is_authenticated and request.user.userType == 'A':
+        check = studenttable.objects.get(user_id_id=id)
+        return render(request,'idrequestApp/idpdf.html', {'check':check})
+    return redirect('/index')
+
+
 
 
 

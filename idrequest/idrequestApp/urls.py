@@ -38,6 +38,9 @@ urlpatterns = [
     path('sdelete/<int:id>', views.sdelete, name='sdelete'),
     path('appstudent/<int:id>', views.appstudent, name='appstudent'),
     
+    
+    path('pdf/<int:id>', views.pdf , name='pdf'),
+    
   
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 if settings.DEBUG: urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

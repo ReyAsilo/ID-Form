@@ -1,0 +1,283 @@
+{%load static%}
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+
+<title>{{check.name}} {{check.lastname}}</title>
+<style>
+  *, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  body {
+   
+    position: center;
+    width: 8.5in;
+    height: 11in;
+    margin: auto;
+    padding: 0;
+  }
+
+  .page {
+    page-break-after: always;
+    position: relative;
+    width: 8.5in;
+    height: 11in;
+  }
+
+  .page-content {
+    position: absolute;
+    width: 8.125in;
+    height: 10.625in;
+    left: 0.1875in;
+    top: 0.1875in;
+    background-color: rgba(0,0,0,0.2);
+  }
+
+  
+
+  *{
+    box-sizing: border-box;
+
+}
+
+
+.container{
+    position: absolute;
+    display: inline-block;
+    left: 22%;
+    top:10%;
+}
+.card{
+    height: 3.375in;
+    width: 2.275in;
+    display: inline-block;
+    padding: 1.3rem 0 1.3rem 0;
+    box-shadow: 0 0 5px #b4b4b4;
+    background-image: url('{%static 'images/bgecard.jpg'%}');
+    background-repeat: no-repeat;
+    background-size: 218.4px 324px;
+    border-radius: 20px;
+    
+}
+
+.card2{
+    height: 3.375in;
+    width: 2.275in;
+    display: inline-block;
+    margin-left: 5px;
+    box-shadow: 0 0 5px #b4b4b4;
+    background-image: url('{%static 'images/back.jpg'%}');
+    background-repeat: no-repeat;
+    background-size: 218.4px 324px;
+    border-radius: 20px;
+}
+
+.signature{
+    position: absolute;
+    top: 79%;
+    left: 20%;
+    max-height: 29px;
+}
+.profile-img{
+    position: absolute;
+    top: 20.5%;
+    left: 13%;
+    width: 105px;
+    height: 105px;
+    border-radius: ;
+    border: 3px solid rgba(255, 255, 255, .2);
+}
+.profile-name{
+    position: absolute;
+    top: 50%;
+    left: 2%;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    margin-top: .5rem;
+    color: black;
+    max-width: 230px;
+    
+}
+
+
+.profile-name2{
+  position: absolute;
+  top: 55%;
+  left: 2%;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  margin-top: .5rem;
+  color: black;
+  max-width: 230px;
+  
+}
+
+
+.course{
+    position: absolute;
+    top: 69%;
+    left: 2%;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 1rem;
+    margin-top: .5rem;
+    text-align: center;
+    color: black;
+}
+
+.number{
+    position: absolute;
+    top: 64%;
+    left: 2%;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1rem;
+    margin-top: .5rem;
+    text-align: center;
+    color: black;
+}
+  .namec{
+      position: absolute;
+      top: 19.5%;
+      left: 55%;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: .7rem;
+      margin-top: .5rem;
+      text-align: center;
+      color: black;
+
+  }
+
+  .address{
+    position: absolute;
+    top: 25%;
+    left: 55%;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: .7rem;
+    margin-top: .5rem;
+    text-align: center;
+    color: black;
+    max-width: 180px;
+
+}
+
+.numberc{
+  position: absolute;
+  top: 40%;
+  left: 67%;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: .7rem;
+  margin-top: .5rem;
+  text-align: center;
+  color: black;
+  max-width: 180px;
+
+
+}
+
+@media print {
+  #printPageButton {
+    display: none;
+  }
+}
+
+#printPageButton{
+  
+}
+
+.button {width: 100%;
+  position: absolute;
+  top: 50%;}
+.button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
+</style>
+</head>
+
+<body>
+ 
+  
+  <div class="page">
+    <button  id="printPageButton" onclick="printFunction()" class="button">Print</button>
+   
+  
+    <div class="container">
+      <h6 class="namec">{{check.cperson}}</h6>
+      <h6 class="address">{{check.address}}</h6>
+      <h6 class="numberc">{{check.cnumber}}</h6>
+      
+        
+          <div class="card">
+            <div class="text-xenter">
+              <div class="pp">
+                         
+                  <img class="profile-img" src="{{ check.idpic.url }}" alt="" >
+              </div>
+              <div class="names">
+                  <h4 class="profile-name">{{check.name}} </h4>
+                  <h4 class="profile-name2">{{check.lastname}}</h4>
+                  <h6 class="number">{{check.snumber}}</h6>
+                  <h6 class="course">{{check.course}}</h6>
+                  <img class="signature" src="{{ check.signature.url }}" alt="" >
+              </div>
+            </div>
+          </div>
+
+          
+      
+        
+          <div class="card2">
+  
+          </div>
+        
+    </div>
+    
+
+  </div>
+
+  
+
+
+
+  <script>
+    function printFunction() { 
+      window.print(); 
+    }
+  </script>
+
+    
+  
+  
+</body>
+
+</html>
