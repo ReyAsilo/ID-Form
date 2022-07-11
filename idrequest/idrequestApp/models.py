@@ -20,6 +20,7 @@ class registration(AbstractUser):
     userType = models.CharField(max_length=30, choices= userType, verbose_name='userType', default ='S')
     
 
+
 def filepath(request, filename):
     old_filename = filename
     timeNow = datetime.datetime.now() .strftime('%Y%m%d%H:%M:%S')
@@ -51,22 +52,30 @@ class studenttable(models.Model):
 
 
 class facultytable(models.Model):
-    fname = models.CharField(max_length=200, blank=True, null=True)
-    fmiddlename = models.CharField(max_length=200, blank=True, null=True)
-    flastname = models.CharField(max_length=200, blank=True, null=True)
-    fnumber = models.CharField(max_length=200, blank=True, null=True) 
-    date = models.CharField(max_length=200, blank=True, null=True) 
+    
+    user_id = models.OneToOneField(registration,
+                                   on_delete=models.CASCADE,
+                                   primary_key=True)
+    name = models.CharField(max_length=200, blank=True, null=True)
+    middlename = models.CharField(max_length=200, blank=True, null=True)
+    lastname = models.CharField(max_length=200, blank=True, null=True)
+    fnumber = models.CharField(max_length=200, blank=True, null=True)
     gsis = models.IntegerField ( blank=True, null=True)
     gpn =models.IntegerField ( blank=True, null=True)
     philhealth = models.IntegerField ( blank=True, null=True)
     tin = models.IntegerField ( blank=True, null=True)
     pagibig =models.IntegerField (blank=True, null=True)
-    fcperson = models.CharField(max_length=200, blank=True, null=True)
-    fcnumber = models.IntegerField ( blank=True, null=True)
-    faddress = models.CharField(max_length=200, blank=True, null=True)
-    idpic = models.ImageField(blank=True, null=True, upload_to="img/%y")
-    signature = models.ImageField(blank=True, null=True, upload_to="img/&y ")
+    
+    cperson = models.CharField(max_length=200, blank=True, null=True)
+    cnumber = models.IntegerField ( blank=True, null=True)
+    address = models.CharField(max_length=200, blank=True, null=True)
+    idpic = models.ImageField(blank=True, null=True, upload_to=filepath)
+    signature = models.ImageField(blank=True, null=True, upload_to=filepath)
     status = models.CharField(max_length=200, blank=True, null=True)
 
+    
+    
+    
+    
 
 

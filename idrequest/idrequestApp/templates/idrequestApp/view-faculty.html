@@ -49,7 +49,7 @@
         </div>
 
         <div class="dropdown">
-            <button class="btn btn-outline-secondary dropdown-toggle mr-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-outline-secondary dropdown-toggle mr-2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Students
             </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -59,10 +59,11 @@
               
                 </div>
              </div>
+             
 
 
             <div class="dropdown ">
-                <button class="btn btn-outline-secondary dropdown-toggle mr-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-outline-secondary dropdown-toggle mr-2" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Faculty
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -78,17 +79,20 @@
     <div class="mt-5 container ">
         <main>
             <div class=" py-5 text-center">
-                <h2>Check Your Information</h2>
+                <h2>Faculty Information</h2>
             </div>
             <table style="background-color:white; border-radius: 10px; "class="table">
                 <thead>
-              
-                    <tr><td style= "text-align: center;" colspan="2" >ID Picture</td></tr>
+   <tr><td style= "text-align: center;" colspan="2" >ID Picture</td></tr>
                     <tr><td  style= "text-align: center;"colspan="2"><h3> <img src="{{ check.idpic.url }}" alt="" style="width:250px;height:250x;"></h3></td></tr>
                     <tr><td colspan="2" ><h3>PERSONAL INFORMATION</h3></td></tr>
                     <tr><td><b>NAME:</b></td><td>{{check.name}} {{check.middlename}} {{check.lastname}}</td></tr>
-                    <tr><td><b>COURSE&SECTION.:</b> </td><td>{{check.course}} </td></tr>
-                    <tr><td><b>STUDENT NO.:</b> </td><td>{{check.snumber}} </td></tr>
+                    <tr><td><b>EMPLOYEE NO.:</b> </td><td>{{check.fnumber}} </td></tr>
+                    <tr><td><b>GSIS NO.:</b> </td><td>{{check.gsis}} </td></tr>
+                    <tr><td><b>Gsis Policy No.:</b></td><td>{{check.gpn}}</td></tr>
+                    <tr><td><b>PHILHEALTH.:</b> </td><td>{{check.philhealth}} </td></tr>
+                    <tr><td><b>TIN.:</b> </td><td>{{check.tin}} </td></tr>
+                    <tr><td><b>PAG-IBIG NO.:</b> </td><td>{{check.pagibig}} </td></tr>
                 
                     <tr><td colspan="2"><h3>IN CASE OF EMERGENCY</h3></td></tr>
                     <tr><td><b>CONTACT PERSON:</b> </td><td>{{check.cperson}} </td></tr>
@@ -99,15 +103,15 @@
                     <tr><td style= "text-align: center;"colspan="2" >Signature</td></tr>
                     <tr><td style= "text-align: center;" colspan="2"><h3> <img src="{{ check.signature.url }}" alt="" style="width:250px;height:250x;"></h3></td></tr>
                     
-                    
 
               </table>
             </div>
 
             <div class="text-center">
                 
-              <a type="button"  href = ""class="btn btn-primary" >Print</a>
-                
+                <a type="button"  href = "{% url 'idrequestApp:appfaculty' check.user_id_id %}"class="btn btn-primary" >Approve</a>
+                <a type="button" href = "{% url 'idrequestApp:fdelete' check.user_id_id %}" class="btn btn-danger" >Decline</a>
+              
             </div>
         </main>
 

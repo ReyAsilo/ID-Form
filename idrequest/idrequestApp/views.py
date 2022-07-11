@@ -13,6 +13,10 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 
+from django.views.generic import View
+from .process import html_to_pdf 
+
+
 
 # Create your views here.
 def index (request):
@@ -42,14 +46,34 @@ def logoutUser(request):
 @login_required(login_url='/index')
 def pick (request):
     if request.user.is_authenticated and request.user.userType == 'S' :
-        return render(request,'idrequestApp/firstview.html')
-    elif request.user.is_authenticated and request.user.userType == 'F' :
-        return render(request,'idrequestApp/firstview.html')
+        idd = request.user.id
+        check = registration.objects.get(id = idd)
+        checkk = studenttable.objects.get(user_id = idd)
+        
+        if checkk.status == 'pending':
+            return render(request,'idrequestApp/firstviews.html', {'check':check})
+        
+        else:
+            return render(request,'idrequestApp/firstview.html', {'check':check})
+    
+    
+    elif request.user.is_authenticated and request.user.userType == 'F':
+        idd = request.user.id
+        check = registration.objects.get(id = idd)
+        checkk = facultytable.objects.get(user_id = idd)
+        
+        if checkk.status == 'pending':
+            return render(request,'idrequestApp/firstviews.html', {'check':check})
+        
+        else:
+             return render(request,'idrequestApp/firstview.html', {'check':check})
+    
     return redirect('/index')
 
 @login_required(login_url='/index')
 def forms (request):
     if request.user.is_authenticated and request.user.userType == 'S':
+        
         
         if request.method == 'POST':      
             
@@ -81,29 +105,33 @@ def forms (request):
 def fforms (request):
     if request.user.is_authenticated and request.user.userType == 'F':
         if request.method == 'POST':
-            fname=request.POST.get('fname')
-            fmiddlename=request.POST.get('fmiddlename')
-            flastname=request.POST.get('lfastname')
-            fnum=request.POST.get('fnumber')
-            date=request.POST.get('date')
-            gsis=request.POST.get('gsis')
-            gpn=request.POST.get('gpn')
-            philhealth=request.POST.get('philhealth')
-            tin=request.POST.get('tin')
-            pagibig=request.POST.get('pagibig')
-            fcperson=request.POST.get('fcperson')
-            fcnumber=request.POST.get('fcnumber')
-            faddress=request.POST.get('address')
-            idpic=request.POST.get('idpic')
-            signature=request.POST.get('signature')
-        
-        try:
-            datas = facultytable.objects.create(fname=fname, fmiddlename=fmiddlename, flastname=flastname, fnum=fnum, gsis=gsis, gpn=gpn, philhealth=philhealth, tin=tin, pagibig=pagibig, fcperson=fcperson, fcnumber=fcnumber, faddress=faddress, idpic=idpic, signature=signature, date=date, status = 'pending')
-            datas.save()
-            return redirect('/cfac')
-        except:
+            faculty = facultytable.objects.get(user_id_id = request.user.pk)
+          
+            faculty.name=request.POST.get('name')
+            faculty.middlename=request.POST.get('middlename')
+            faculty.lastname=request.POST.get('lastname')
+
+            faculty.fnumber=request.POST.get('employee')
+            faculty.gpn=request.POST.get('gsis')
+            faculty.gpn=request.POST.get('gpn')
+            faculty.philhealth=request.POST.get('philhealth')
+            faculty.tin=request.POST.get('tin')
+            faculty.pagibig=request.POST.get('pagibig')
+            
+            
+            faculty.cperson=request.POST.get('cperson')
+            faculty.cnumber=request.POST.get('cnumber')
+            faculty.address=request.POST.get('address')
+
+            faculty.status = 'pending'
+            if len(request.FILES) != 0:
+                faculty.idpic = request.FILES['pic']
+                faculty.signature = request.FILES['signature']
+            faculty.save()
+            return redirect('/checkfaculty')
+        else:
             print("error")
-        return render(request,'idrequestApp/facultyform.html')
+            return render(request, 'idrequestApp/facultyform.html')
     return redirect('/pick')
 
 
@@ -123,7 +151,9 @@ def studentpending (request):
 @login_required(login_url='/index')
 def facultypending (request):
     if request.user.is_authenticated and request.user.userType == 'A':
-        return render(request,'idrequestApp/faculty Pending.html')
+        display = facultytable.objects.filter(status='pending')
+        context = {'display':display}
+        return render(request,'idrequestApp/faculty Pending.html', context)
     return redirect('/index')
 
 @login_required(login_url='/index')
@@ -136,8 +166,10 @@ def studentapproved (request):
 
 @login_required(login_url='/index')
 def facultyapproved (request):
-    if request.user.is_authenticated and request.user.userType == 'A':    
-        return render(request,'idrequestApp/Faculty Approved.html')
+    if request.user.is_authenticated and request.user.userType == 'A':   
+        display = facultytable.objects.filter(status='approved')
+        context = {'display':display} 
+        return render(request,'idrequestApp/Faculty Approved.html', context)
     return redirect('/index')
 
 def newreg (request):
@@ -147,18 +179,17 @@ def newreg (request):
         if form.is_valid():
             username1 = form.cleaned_data.get('username')
             user = form.cleaned_data.get('userType')
-            
-        
-            
             form.save()
             
             if user == 'S':
                 new = registration.objects.get(username = username1)
                 studenttable.objects.create(user_id = new)
+            if user == 'F':
+                new = registration.objects.get(username = username1)
+                facultytable.objects.create(user_id = new)
                 
         return redirect ('/index')
-            
-            
+                 
     context =  {'form': form }
     return render(request, 'idrequestApp/registration.html', context)
     
@@ -172,23 +203,43 @@ def checkstudent (request):
 
 @login_required(login_url='/index')
 def checkfaculty (request):
-    if request.user.is_authenticated and request.user.userType == 'A':
-        return render(request,'idrequestApp/check-faculty.html')
+    if request.user.is_authenticated and request.user.userType == 'F':
+        check = facultytable.objects.last()
+        return render(request,'idrequestApp/check-faculty.html', {'check':check})
     return redirect('/index')
 
 @login_required(login_url='/index')
 def deletestudent (request):
-    if request.user.is_authenticated and request.user.userType == 'A':
+    if request.user.is_authenticated and request.user.userType == 'S':
         check = studenttable.objects.last()
         check.delete()
         return render(request,'idrequestApp/studentform.html')
     return redirect('/index')
+
+
+@login_required(login_url='/index')
+def deletefaculty (request):
+    if request.user.is_authenticated and request.user.userType == 'F':
+        check = facultytable.objects.last()
+        check.delete()
+        return render(request,'idrequestApp/facultyform.html')
+    return redirect('/index')
+
 
 @login_required(login_url='/index')
 def viewstudent (request, id):
     if request.user.is_authenticated and request.user.userType == 'A':
         check = studenttable.objects.get(user_id_id=id)
         return render(request,'idrequestApp/view-student.html', {'check':check})
+    return redirect('/index')
+
+
+
+@login_required(login_url='/index')
+def viewfaculty (request, id):
+    if request.user.is_authenticated and request.user.userType == 'A':
+        check = facultytable.objects.get(user_id_id=id)
+        return render(request,'idrequestApp/view-faculty.html', {'check':check})
     return redirect('/index')
 
 def sdelete (request, id):
@@ -203,12 +254,30 @@ def sdelete (request, id):
     [check.email],
     fail_silently=False,
 )
-        # send_mail(subject = subject, message =message, auth_user = settings.EMAIL_HOST_USER, recipient_list=[email], fail_silently = false )
-          
+      
         check.status = "declined"
         check.save()
     
         return redirect('/studentpending')
+    return redirect('/index')
+
+
+@login_required(login_url='/index')
+def fdelete (request, id):
+    if request.user.is_authenticated and request.user.userType == 'A':
+        checkk = registration.objects.get(id=id)
+        check = facultytable.objects.get(user_id_id=id)
+     
+        send_mail(
+            'TUP-CAVITE ID Request: APPROVED',
+            'Your request has been declined. Please fill up the form again.',
+            'idrequestapp@gmail.com',
+            [checkk.email],
+            fail_silently=False,)
+        
+        check.status = "declined"
+        check.save()
+        return redirect('/facultypending')
     return redirect('/index')
 
 @login_required(login_url='/index')
@@ -227,6 +296,27 @@ def appstudent (request, id):
         return redirect('/studentpending')
     return redirect('/index')
 
+
+@login_required(login_url='/index')
+def appfaculty (request, id):
+    if request.user.is_authenticated and request.user.userType == 'A':
+        checkk = registration.objects.get(id=id)
+        check = facultytable.objects.get(user_id_id=id)
+     
+        send_mail(
+            'TUP-CAVITE ID Request: APPROVED',
+            'Your request has been approved. Please wait for the schedule of picking up your ID.',
+            'idrequestapp@gmail.com',
+            [checkk.email],
+            fail_silently=False,)
+        
+        check.status = "approved"
+        check.save()
+        return redirect('/facultypending')
+    return redirect('/index')
+
+
+
 @login_required(login_url='/index')
 def student (request, id):
     if request.user.is_authenticated and request.user.userType == 'A':
@@ -234,12 +324,7 @@ def student (request, id):
         return render(request,'idrequestApp/view-student.html', {'check':check})
     return redirect('/index')
 
-@login_required(login_url='/index')
-def printstudent (request, id):
-    if request.user.is_authenticated and request.user.userType == 'A':
-        check = studenttable.objects.get(user_id_id=id)
-        return render(request,'idrequestApp/print-student.html', {'check':check})
-    return redirect('/index')
+
 
 
 @login_required(login_url='/index')
@@ -248,6 +333,14 @@ def pdf (request, id):
         check = studenttable.objects.get(user_id_id=id)
         return render(request,'idrequestApp/idpdf.html', {'check':check})
     return redirect('/index')
+
+@login_required(login_url='/index')
+def fpdf (request, id):
+    if request.user.is_authenticated and request.user.userType == 'A':
+        check = facultytable.objects.get(user_id_id=id)
+        return render(request,'idrequestApp/fidpdf.html', {'check':check})
+    return redirect('/index')
+
 
 
 

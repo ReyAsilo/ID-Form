@@ -14,7 +14,7 @@ urlpatterns = [
     path('pick/',views.pick, name='pick'),
     path('forms/',views.forms, name='forms'),
     
-    path('fform/',views.fforms, name='fform'),
+    path('fforms/',views.fforms, name='fforms'),
     
  
 
@@ -30,16 +30,25 @@ urlpatterns = [
     path('checkfaculty/',views.checkfaculty, name='checkfaculty'),
     
     path('deletestudent/', views.deletestudent, name='deletestudent'),
+    path('deletefaculty/', views.deletefaculty, name='deletefaculty'),
     
     
     path('viewstudent/<int:id>', views.viewstudent, name='viewstudent'),
-    path('printstudent/<int:id>', views.printstudent, name='printstudent'),
+    path('viewfaculty/<int:id>', views.viewfaculty, name='viewfaculty'),
+    
+    
     
     path('sdelete/<int:id>', views.sdelete, name='sdelete'),
+    path('fdelete/<int:id>', views.fdelete, name='fdelete'),
+    
+    
     path('appstudent/<int:id>', views.appstudent, name='appstudent'),
+    path('appfaculty/<int:id>', views.appfaculty, name='appfaculty'),
     
-    
+    path('fpdf/<int:id>',views.fpdf, name ='fpdf'),
     path('pdf/<int:id>', views.pdf , name='pdf'),
+    
+    
     
   
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

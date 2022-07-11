@@ -39,5 +39,5 @@ class fform(forms.ModelForm):
     class Meta:
         model = facultytable
 
-        fields = ['fname', 'fmiddlename', 'flastname', 'fnumber', 'date', 'gsis', 'gpn', 'philhealth', 'tin', 'pagibig', 'fcperson', 'fcnumber', 'faddress', 'idpic', 'signature' ]
+        fields = ['name', 'middlename', 'lastname', 'fnumber', 'gsis', 'gpn', 'philhealth', 'tin', 'pagibig', 'cperson', 'cnumber', 'address', 'idpic', 'signature' ]
 
