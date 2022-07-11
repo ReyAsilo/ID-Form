@@ -53,6 +53,9 @@ def pick (request):
         if checkk.status == 'pending':
             return render(request,'idrequestApp/firstviews.html', {'check':check})
         
+        elif checkk.status == 'approved':
+            return render(request,'idrequestApp/firstviewss.html', {'check':check})
+        
         else:
             return render(request,'idrequestApp/firstview.html', {'check':check})
     
@@ -64,6 +67,9 @@ def pick (request):
         
         if checkk.status == 'pending':
             return render(request,'idrequestApp/firstviews.html', {'check':check})
+        
+        elif checkk.status == 'approved':
+                return render(request,'idrequestApp/firstviewss.html', {'check':check})
         
         else:
              return render(request,'idrequestApp/firstview.html', {'check':check})
@@ -333,6 +339,8 @@ def pdf (request, id):
         check = studenttable.objects.get(user_id_id=id)
         return render(request,'idrequestApp/idpdf.html', {'check':check})
     return redirect('/index')
+
+
 
 @login_required(login_url='/index')
 def fpdf (request, id):
